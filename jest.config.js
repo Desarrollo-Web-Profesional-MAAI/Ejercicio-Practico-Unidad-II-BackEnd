@@ -1,0 +1,7 @@
+export default {
+  testEnvironment: 'node',
+  globalSetup: './src/test/globalSetup.js',
+  globalTeardown: './src/test/globalTeardown.js',
+  setupFilesAfterEnv: ['./src/test/setupFileAfterEnv.js'],
+  transform: {},
+};

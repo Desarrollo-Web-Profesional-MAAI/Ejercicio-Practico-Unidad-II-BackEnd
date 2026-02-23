@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # Servicio de MongoDB
+  mongodb:
+    image: mongo:6.0
+    container_name: pedidos-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: pedidos
+
+  # Servicio del Backend
+  backend:
+    build: .
+    container_name: pedidos-backend
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: 3001
+      DATABASE_URL: mongodb://mongodb:27017/pedidos
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+# Volumen para persistir datos de MongoDB
+volumes:
+  mongodb_data:
