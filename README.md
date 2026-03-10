@@ -2,7 +2,7 @@
 BackEnd de Ejercicio Practico Unidad II Pedidos
 
 # Comando para clonar repositorio:
-- git clone
+- git clone https://github.com/Desarrollo-Web-Profesional-MAAI/Ejercicio-Practico-Unidad-II-BackEnd.git
 - npm run dev
 
 # Pruebas en postman:
