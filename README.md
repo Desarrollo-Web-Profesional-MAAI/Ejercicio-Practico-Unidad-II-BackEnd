@@ -3,9 +3,15 @@ BackEnd de Ejercicio Practico Unidad II Pedidos
 
 # Comando para clonar repositorio:
 - git clone https://github.com/Desarrollo-Web-Profesional-MAAI/Ejercicio-Practico-Unidad-II-BackEnd.git
+
+# Comandos para correr proyecto:
+- npm i
 - npm run dev
 
-# Pruebas en postman:
+# Comando para verificar la creación de end-points:
+- node test-rutas.js
+
+# Pruebas en postman pedidos:
 
 Prueba base en postman:
 <img width="1909" height="872" alt="imagen" src="https://github.com/user-attachments/assets/d5ee3e46-ff74-474f-8ce9-63e79af634ff" />
@@ -35,6 +41,27 @@ Eliminar pedido:
 <img width="1919" height="646" alt="imagen" src="https://github.com/user-attachments/assets/3d448050-bb77-4077-b6d6-35d98909079e" />
 <img width="1919" height="811" alt="imagen" src="https://github.com/user-attachments/assets/5d41a9a1-ef6d-4fce-aad5-bd71e396c489" />
 
-Descargar postman:
+# Pruebas en postman pedidos:
+
+Crear un nuevo usuario:
+<img width="1919" height="889" alt="imagen" src="https://github.com/user-attachments/assets/c0505243-e39a-4cb6-9cc4-6709e2f1b00e" />
+
+Error al crear usuario con nombre repetido:
+<img width="1919" height="779" alt="imagen" src="https://github.com/user-attachments/assets/3b178e67-d9f9-4a32-8a81-e0214951d823" />
+
+Iniciar sesión con el usuario:
+<img width="1919" height="915" alt="imagen" src="https://github.com/user-attachments/assets/47975b7d-8f99-4d97-914d-ef38da00c357" />
+
+Error al iniciar sesión con contraseña incorrecta:
+<img width="1919" height="800" alt="imagen" src="https://github.com/user-attachments/assets/3cdb005b-d83e-4b9f-a815-49bf32b84c22" />
+
+Encontrar usuario por ID:
+<img width="1919" height="811" alt="imagen" src="https://github.com/user-attachments/assets/6b800cd0-15a1-42a0-89a9-a84a8cab29ba" />
+
+
+# Descargar end-points de postman:
+Descargar postman pedidos:
 https://drive.google.com/file/d/1HnXG4iCnwLfRG2zaOXWVMDMr7GL52mKH/view?usp=sharing
 
+Descargar postman usuario:
+https://drive.google.com/file/d/1YEmXA_8tazgxpb9ZXriAL9Vtl5S8Fmo3/view?usp=sharing
