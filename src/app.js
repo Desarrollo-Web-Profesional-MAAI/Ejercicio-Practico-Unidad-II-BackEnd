@@ -6,16 +6,43 @@ import { usuarioRoutes } from './rutas/usuario.js'
 
 const app = express()
 
-// Middlewares
+// ============================================
+// MIDDLEWARES
+// ============================================
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// IMPORTANTE: Registrar rutas ANTES de las rutas de error
+// ============================================
+// LOGGING TEMPORAL - Para debugging
+// ============================================
+app.use((req, res, next) => {
+  if (req.method === 'POST' && req.path === '/api/v1/pedidos') {
+    console.log('\n📦 === PETICIÓN POST A /api/v1/pedidos ===')
+    console.log('Body completo:', JSON.stringify(req.body, null, 2))
+    console.log('Campos recibidos:', Object.keys(req.body))
+    console.log('nombre:', req.body.nombre)
+    console.log('telefono:', req.body.telefono)
+    console.log('direccion:', req.body.direccion)
+    console.log('fecha_solicitud:', req.body.fecha_solicitud)
+    console.log('fecha_envio:', req.body.fecha_envio)
+    console.log('total:', req.body.total)
+    console.log('pagado:', req.body.pagado)
+    console.log('comentario:', req.body.comentario)
+    console.log('========================================\n')
+  }
+  next()
+})
+
+// ============================================
+// REGISTRAR RUTAS
+// ============================================
 usuarioRoutes(app)
 pedidosRoutes(app)
 
-// Ruta principal
+// ============================================
+// RUTA PRINCIPAL
+// ============================================
 app.get('/', (req, res) => {
   res.json({
     message: '🚀 API REST - Pedidos con Autenticación JWT',
@@ -30,7 +57,9 @@ app.get('/', (req, res) => {
   })
 })
 
-// Health check
+// ============================================
+// HEALTH CHECK
+// ============================================
 app.get('/health', (req, res) => {
   res.json({
     status: 'OK',
@@ -38,12 +67,15 @@ app.get('/health', (req, res) => {
   })
 })
 
-// Manejo de errores 404 (debe ir AL FINAL)
+// ============================================
+// MANEJO DE ERRORES 404 (DEBE IR AL FINAL)
+// ============================================
 app.use((req, res) => {
   res.status(404).json({
     success: false,
     error: 'Ruta no encontrada',
     path: req.path,
+    method: req.method,
   })
 })
 

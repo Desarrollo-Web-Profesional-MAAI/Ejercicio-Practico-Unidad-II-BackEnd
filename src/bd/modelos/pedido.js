@@ -1,23 +1,54 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose from 'mongoose'
+
+const { Schema, model } = mongoose
 
 const pedidoSchema = new Schema(
   {
-    // NUEVO: Referencia al usuario que hizo el pedido
     cliente: {
       type: Schema.Types.ObjectId,
       ref: 'usuario',
-      required: false, // Opcional por ahora para no romper pedidos existentes
     },
-    nombre: { type: String, required: true },
-    telefono: { type: String, required: true, length: 10 },
-    direccion: { type: String, required: true },
-    fecha_solicitud: { type: Date, required: true },
-    fecha_envio: { type: Date, required: true },
-    total: { type: Number, default: 0.0 },
-    pagado: [String],
-    comentario: { type: String },
+    nombre: {
+      type: String,
+      required: [true, 'El nombre es obligatorio'],
+      trim: true,
+    },
+    telefono: {
+      type: String,
+      required: [true, 'El teléfono es obligatorio'],
+      maxlength: [10, 'El teléfono debe tener máximo 10 dígitos'],
+    },
+    direccion: {
+      type: String,
+      required: [true, 'La dirección es obligatoria'],
+      trim: true,
+    },
+    fecha_solicitud: {
+      type: Date,
+      required: [true, 'La fecha de solicitud es obligatoria'],
+    },
+    fecha_envio: {
+      type: Date,
+      required: [true, 'La fecha de envío es obligatoria'],
+    },
+    total: {
+      type: Number,
+      default: 0.0,
+      min: [0, 'El total no puede ser negativo'],
+    },
+    pagado: {
+      type: [String],
+      default: [],
+    },
+    comentario: {
+      type: String,
+      trim: true,
+    },
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+    versionKey: false,
+  },
 )
 
-export const Pedido = mongoose.model('Pedido', pedidoSchema)
+export const Pedido = model('Pedido', pedidoSchema)

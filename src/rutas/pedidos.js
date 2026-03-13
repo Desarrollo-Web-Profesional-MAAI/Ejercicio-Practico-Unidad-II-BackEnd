@@ -53,15 +53,27 @@ export function pedidosRoutes(app) {
   });
 
   // Crear un nuevo Pedido
-  app.post('/api/v1/pedidos', async (req, res) => {
-    try {
-      const pedido = await creaPedido(req.body);
-      return res.json(pedido);
-    } catch (err) {
-      console.error('Error creando un pedido', err);
-      return res.status(500).end();
-    }
-  });
+  // Crear un nuevo Pedido
+app.post('/api/v1/pedidos', async (req, res) => {
+  // LOGGING TEMPORAL
+  console.log('\n📦 === DATOS RECIBIDOS EN POST /api/v1/pedidos ===')
+  console.log('Body completo:', JSON.stringify(req.body, null, 2))
+  console.log('Tipo de body:', typeof req.body)
+  console.log('Claves:', Object.keys(req.body))
+  console.log('direccion:', req.body.direccion)
+  console.log('===================================================\n')
+
+  try {
+    const pedido = await creaPedido(req.body)
+    return res.json(pedido)
+  } catch (err) {
+    console.error('Error creando un pedido', err.message)
+    return res.status(500).json({ 
+      error: err.message,
+      details: err.errors 
+    })
+  }
+})
 
   // Modificar un Pedido existente
   app.patch('/api/v1/pedidos/:id', async (req, res) => {
